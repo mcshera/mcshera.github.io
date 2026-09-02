@@ -49,6 +49,7 @@ The About section is designed to work without a photo. To add one, place `src/as
 ```
 
 ## Facts to confirm before launch
+- Current role shown as **Lead Game Designer, Amber Studio (2026–present)** on an IP-licensed party game (NDA), from `Matthew_Shera_Resume_Amber.docx` and the Amber contractor agreement. The hero still says "Open to director-level conversations"; change `site.json → availability` if that no longer applies.
 - Anomaly Games end date is shown as **2024–2026** (the April 2026 résumé still said "Ongoing").
 - The **speaker credit** (NextGen Play: AI & Web3 Gaming Summit panel) comes from your LinkedIn post, not the résumé.
 - **Netflix (NDA)** is listed as a consulting client because it appears in `Matthew_Shera_Resume_2026-04_Updated.docx`; drop it if the NDA forbids naming.
