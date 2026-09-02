@@ -22,19 +22,16 @@ Every push to `main` runs `.github/workflows/pages.yml` (Node 22 → `npm ci` �
 git add -A && git commit -m "Update copy" && git push     # ≈ 60–90 s later the change is live
 ```
 
-Custom domain: `matthewshera.com` is configured in the repo's Pages settings. **DNS lives at Wix** (the domain's nameservers are Wix-assigned Cloudflare servers), so the records below must be set in the Wix dashboard → Domains → matthewshera.com → Advanced / DNS records:
+Custom domain: `matthewshera.com` is configured in the repo's Pages settings. **DNS is on Cloudflare** (the domain is being transferred to Cloudflare Registrar as well). Records, all **proxied** (orange cloud):
 
-| Type | Host | Value |
+| Type | Name | Content |
 |---|---|---|
-| A | `@` | `185.199.108.153` |
-| A | `@` | `185.199.109.153` |
-| A | `@` | `185.199.110.153` |
-| A | `@` | `185.199.111.153` |
-| CNAME | `www` | `mcshera.github.io` |
+| A | `@` | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
+| CNAME | `www` | `mcshera.github.io` (GitHub redirects www → apex) |
 
-Delete any existing A / CNAME records for `@` and `www` that point to Wix. Once DNS resolves (minutes to a few hours), GitHub issues the HTTPS certificate automatically; then turn on **Enforce HTTPS** in GitHub → repo → Settings → Pages (or run `gh api -X PUT repos/mcshera/mcshera.github.io/pages -F https_enforced=true`).
+Because Cloudflare proxies the traffic, HTTPS is terminated by Cloudflare's edge certificate (GitHub cannot issue its own while proxied — that is expected). Recommended Cloudflare settings: **SSL/TLS → Overview → Full** (not "Full (strict)"), **Edge Certificates → Always Use HTTPS: On**.
 
-Check status: `gh api repos/mcshera/mcshera.github.io/pages/health` or the Pages settings panel.
+Check GitHub's view of the domain: `gh api repos/mcshera/mcshera.github.io/pages/health`.
 
 ## Editing content
 
