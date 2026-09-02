@@ -1,0 +1,32 @@
+<footer class="footer" id="contact">
+  <div class="footer__inner">
+    <p class="footer__eyebrow mono" data-reveal>Contact</p>
+    <h2 class="footer__title" data-split>Let’s make something <em>worth mastering.</em></h2>
+    <div class="footer__row" data-reveal>
+      <a class="footer__mail" href="mailto:{{ site.email }}" data-cursor="hide">
+        <span class="footer__mail-text">{{ site.email }}</span>
+        <span class="footer__mail-line" aria-hidden="true"></span>
+      </a>
+      <p class="footer__note">
+        Open to director and lead roles, studio consulting on systems and economies — or a long conversation about card games.
+      </p>
+    </div>
+    <div class="footer__grid" data-reveal>
+      <ul class="footer__links">
+        <li><a href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="{{ site.shipless }}" target="_blank" rel="noopener">SHIPLESS</a></li>
+        <li><a href="/resume/" data-transition>Résumé</a></li>
+      </ul>
+      <ul class="footer__links">
+        <li><a href="/#work" data-transition>Work</a></li>
+        <li><a href="/#about" data-transition>About</a></li>
+        <li><a href="#top" data-top>Back to top</a></li>
+      </ul>
+      <div class="footer__meta mono">
+        <span>{{ site.location }}</span>
+        <span><time data-clock datetime="">--:--</time> local</span>
+        <span>© {{ '' | year }} Matthew Shera</span>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,13 @@
+import { chromium } from 'playwright-core';
+const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const browser = await chromium.launch({ executablePath: CHROME, headless: true });
+const page = await browser.newPage({ viewport: { width: 816, height: 1056 }, reducedMotion: 'reduce' });
+await page.goto('http://127.0.0.1:8089/resume/', { waitUntil: 'networkidle' });
+await page.emulateMedia({ media: 'print' });
+await page.waitForTimeout(300);
+await page.screenshot({ path: '.scratch/resume-print.png', fullPage: true });
+await page.emulateMedia({ media: 'screen' });
+await page.setViewportSize({ width: 1440, height: 900 });
+await page.waitForTimeout(600);
+await page.screenshot({ path: '.scratch/resume-web.png', fullPage: true });
+await browser.close();

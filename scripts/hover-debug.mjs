@@ -1,0 +1,21 @@
+import { chromium } from 'playwright-core';
+const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const browser = await chromium.launch({ executablePath: CHROME, headless: true });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto('http://127.0.0.1:8089/#work', { waitUntil: 'networkidle' });
+await page.waitForTimeout(2000);
+const row = await page.$('.work-row[data-slug="skyweaver"]');
+const rb = await row.boundingBox();
+await page.mouse.move(rb.x + 300, rb.y + rb.height / 2);
+await page.waitForTimeout(900);
+const info = await page.evaluate(() => {
+  const box = document.querySelector('.work-preview');
+  const r = box.getBoundingClientRect();
+  const row = document.querySelector('.work-row[data-slug="skyweaver"]');
+  const t = row.querySelector('.work-row__title').getBoundingClientRect();
+  const m = row.querySelector('.work-row__meta').getBoundingClientRect();
+  return { box: { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height), opacity: getComputedStyle(box).opacity, transform: getComputedStyle(box).transform }, title: { left: Math.round(t.left), right: Math.round(t.right) }, meta: { left: Math.round(m.left) } };
+});
+console.log(JSON.stringify(info));
+await page.screenshot({ path: '.scratch/scenes/hover-debug.png' });
+await browser.close();

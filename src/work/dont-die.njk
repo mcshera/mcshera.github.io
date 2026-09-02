@@ -1,0 +1,52 @@
+---
+layout: case.njk
+permalink: /work/dont-die/
+order: 4
+slug: dont-die
+title: Don’t Die
+summary: A dice-building roguelike auto-battler, balanced with a simulation framework before players ever saw a change.
+lede: A dice-building roguelike auto-battler — a curated pool of dice faces, permanent death, and ranked PvP — balanced with an MCTS- and CFR-inspired simulation framework before players ever saw a change.
+description: Don’t Die case study — as Game Director at Anomaly Games, Matthew Shera directed a dice-building roguelike auto-battler and built the simulation framework used to pressure-test every balance change.
+role: Game Director
+studio: Anomaly Games
+years: 2024–2026
+platform: Web · Mobile
+disciplines: Direction, dice system design, balance simulation, ranked PvP, economy
+diagram: dont-die
+heroCaption: Illustrative — one roll’s decision tree. The real trees are wider, and the machine walks them for you.
+previewStat: n → ∞
+previewCaption: Simulate before you ship
+plateColor: "#17171A"
+---
+<section class="case-section">
+  <div class="case-section__head"><span class="mono" data-reveal>Context</span><h2 class="display-s" data-split>Dice you build, a run you lose, a ladder you climb.</h2></div>
+  <div class="case-section__body prose" data-reveal>
+    <p>Don’t Die is a roguelike auto-battler where your build is a set of dice. Each face is a choice: keep it, burn it, upgrade it, or roll the risk. Runs are short and fatal; the meta is long. It was one of the live titles I directed at Anomaly Games, and the one that taught me the most about balancing systems with variance baked in.</p>
+    <p>Dice games are honest about luck, which means the designer has to be honest about probability. A face that feels great in a playtest can quietly warp a thousand runs. You cannot feel your way to that. You have to count.</p>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="case-section__head"><span class="mono" data-reveal>What I did</span><h2 class="display-s" data-split>Count first. Then trust the feel.</h2></div>
+  <div class="case-section__body" data-reveal>
+    <ul>
+      <li><span><b>Simulation framework.</b> Built an MCTS- and CFR-inspired harness that plays the game thousands of times per change, surfacing dominant faces, dead faces and difficulty cliffs before a patch ships.</span></li>
+      <li><span><b>Dice pool design.</b> Curated the face pool and the rarity ladder so every die tells a story and no story is mandatory.</span></li>
+      <li><span><b>Ranked PvP.</b> Directed the ranked mode from spec to ship.</span></li>
+      <li><span><b>Economy &amp; progression.</b> Tuned the reward curve so a lost run still moves the meta forward.</span></li>
+      <li><span><b>Direction.</b> One roadmap for design, engineering and art, and reviews that kept the game’s intent legible to everyone on it.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="case-section__head"><span class="mono" data-reveal>Why it matters</span><h2 class="display-s" data-split>The method outgrew the game.</h2></div>
+  <div class="case-section__body prose" data-reveal>
+    <p>The simulation-first approach I built for Don’t Die became the way I work. It is the same discipline behind the 1,800-run AI playtest of SHIPLESS, and the reason I would rather find a broken die on my laptop at midnight than in a player review the next morning.</p>
+  </div>
+</section>
+
+<figure class="case-quote">
+  <blockquote data-split>You cannot <em>feel</em> your way to a thousand runs. You have to count.</blockquote>
+  <figcaption class="mono" data-reveal>Matthew Shera — on balancing Don’t Die</figcaption>
+</figure>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ theme or 'paper' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% if title %}{{ title }} — {{ site.shortTitle }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="author" content="{{ site.name }}">
+  <meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B0B0C" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="{{ page.url | abs(site.url) }}">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:site_name" content="{{ site.shortTitle }}">
+  <meta property="og:title" content="{% if title %}{{ title }} — {{ site.shortTitle }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ page.url | abs(site.url) }}">
+  <meta property="og:image" content="{{ (ogImage or site.ogImage) | abs(site.url) }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ site.name }} — {{ site.role }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% if title %}{{ title }} — {{ site.shortTitle }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="twitter:description" content="{{ description or site.description }}">
+  <meta name="twitter:image" content="{{ (ogImage or site.ogImage) | abs(site.url) }}">
+
+  <link rel="preload" href="/assets/fonts/instrument-serif-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-serif-italic-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/geist-normal-300-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/geist-mono-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script>document.documentElement.classList.add('js');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ site.name }}",
+    "jobTitle": "Game Director",
+    "description": "{{ site.description }}",
+    "url": "{{ site.url }}",
+    "email": "mailto:{{ site.email }}",
+    "address": { "@type": "PostalAddress", "addressLocality": "Toronto", "addressCountry": "CA" },
+    "sameAs": ["{{ site.linkedin }}", "{{ site.shipless }}"],
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Ontario Tech University" },
+    "worksFor": { "@type": "Organization", "name": "Shipless Inc." },
+    "knowsAbout": ["Game design", "Systems design", "Economy design", "Collectible card games", "Live operations", "AI-assisted design"]
+  }
+  </script>
+</head>
+<body class="{{ bodyClass }}">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__label"></span></div>
+
+  {% include "partials/nav.njk" %}
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+
+  <div class="work-preview" aria-hidden="true">
+    {% for w in collections.work %}
+    <figure class="work-preview__item" data-preview="{{ w.data.slug }}">
+      {% if w.data.previewImage %}
+        <img src="{{ w.data.previewImage }}" alt="" width="640" height="400" loading="lazy" decoding="async">
+      {% else %}
+        <div class="work-preview__plate" style="--plate:{{ w.data.plateColor or '#151516' }}">
+          <span class="work-preview__stat">{{ w.data.previewStat }}</span>
+          <span class="work-preview__cap">{{ w.data.previewCaption }}</span>
+        </div>
+      {% endif %}
+    </figure>
+    {% endfor %}
+  </div>
+
+  <script src="/assets/vendor/gsap.min.js" defer></script>
+  <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/vendor/SplitText.min.js" defer></script>
+  <script src="/assets/vendor/lenis.min.js" defer></script>
+  <script src="/assets/js/main.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+import { chromium } from 'playwright-core';
+const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const browser = await chromium.launch({ executablePath: CHROME, headless: true });
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+const logs = [];
+page.on('console', (m) => logs.push(m.type() + ': ' + m.text()));
+page.on('pageerror', (e) => logs.push('PAGEERROR ' + e.message));
+await page.goto('http://127.0.0.1:8089/#work', { waitUntil: 'networkidle' });
+await page.waitForTimeout(2000);
+const row = await page.$('.work-row[data-slug="skyweaver"]');
+const rb = await row.boundingBox();
+await page.mouse.move(rb.x + 300, rb.y + rb.height / 2);
+await page.waitForTimeout(200);
+await page.mouse.move(rb.x + 310, rb.y + rb.height / 2 + 2);
+await page.waitForTimeout(900);
+const info = await page.evaluate(() => {
+  const box = document.querySelector('.work-preview');
+  return { x: gsap.getProperty(box, 'x'), y: gsap.getProperty(box, 'y'), xp: gsap.getProperty(box, 'xPercent'), tweens: gsap.getTweensOf(box).length, active: document.querySelector('.work-preview__item.is-active')?.getAttribute('data-preview'), src: document.querySelector('script[src*="main.js"]').src };
+});
+console.log(JSON.stringify(info), JSON.stringify(logs));
+await browser.close();

@@ -1,0 +1,88 @@
+---
+layout: case.njk
+permalink: /work/shipless/
+order: 1
+slug: shipless
+title: SHIPLESS
+summary: A co-op sci-fi survival dice crawler — designed, built and balanced end to end by one person, with 1,800 AI playtests behind it.
+lede: A co-op sci-fi survival dice crawler about escaping a dying ship. Designed, built, art-directed and balanced end to end by one person — then played 1,800 times by AI agents before a human ever saw the balance patch.
+description: SHIPLESS case study — Matthew Shera designed, built and balanced a seeded co-op dice crawler solo, with a 1,800-run AI playtest harness, a free digital client and a print edition.
+role: Founder, director & sole developer
+studio: Shipless Inc.
+years: 2026–present
+platform: Browser (free) · Print edition
+disciplines: Direction, systems, economy, engineering, art direction, go-to-market
+heroImage: /assets/work/shipless/ship-wide.webp
+heroSrcset: /assets/work/shipless/ship-wide-800.webp 800w, /assets/work/shipless/ship-wide-1280.webp 1280w, /assets/work/shipless/ship-wide.webp 1920w
+heroAlt: The Erebus, a mining hauler bristling with modules, adrift against a star field.
+heroCaption: The Erebus. Her crew didn’t die. They changed.
+previewImage: /assets/work/shipless/hub-800.webp
+ogImage: /assets/work/shipless/title.jpg
+---
+{% set arrow %}<svg class="arrow-link__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endset %}
+
+<section class="case-section">
+  <div class="case-section__head"><span class="mono" data-reveal>Context</span><h2 class="display-s" data-split>She isn’t derelict. She’s staffed.</h2></div>
+  <div class="case-section__body prose" data-reveal>
+    <p>SHIPLESS is a sci-fi survival dice crawler for one to four players. A shared deck of chapters tells the story of the Erebus — a mining hauler whose crew didn’t die, they <em>changed</em>. Every turn the ship deals you a new chapter: a locked door, a thing in the dark, a crewmate who is almost still a person. You answer with dice — yours and the crew’s — and live with what they roll. Death is permanent. The ship does not care whether you make it.</p>
+    <p>It is the distillation of everything I have worked on: Skyweaver’s card economy, Don’t Die’s dice-building, Pocket Knights’ onboarding — built as a small box with deep dread, solo-first, and playable in a lunch break or across a whole night.</p>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="case-section__head"><span class="mono" data-reveal>Design</span><h2 class="display-s" data-split>Your die is your character.</h2></div>
+  <div class="case-section__body" data-reveal>
+    <ul>
+      <li><span><b>Six classes, six custom dice.</b> Marine, Engineer, Medic, Scientist, Smuggler, Android — each a die with its own face set. You don’t pick a loadout; you <em>are</em> the roll.</span></li>
+      <li><span><b>The CHARGE die.</b> Every round is a spend decision: bank power, force a symbol, unjam a gun, feed an energy volley. Pressure, every turn.</span></li>
+      <li><span><b>Gear-fear.</b> A Tarkov-style armoury. Carry your best gun in, lose it if you die, bank it if you escape. Bringing it is the gamble.</span></li>
+      <li><span><b>Shape-coded traits, no twitch.</b> Turn-based and readable at a glance so the dread comes from the decision, not the dexterity.</span></li>
+      <li><span><b>One screen is the ship; phones are the crew.</b> Co-op that scales from a solo run to four people passing dice around a table.</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="crew" data-stagger>
+  {% for c in [["marine","Marine"],["engineer","Engineer"],["medic","Medic"],["scientist","Scientist"],["smuggler","Smuggler"],["android","Android"]] %}
+  <figure><img src="/assets/work/shipless/crew-{{ c[0] }}.webp" alt="Painted portrait of the {{ c[1] }} class from SHIPLESS." width="640" height="960" loading="lazy" decoding="async"><figcaption>{{ c[1] }}</figcaption></figure>
+  {% endfor %}
+</div>
+
+<section class="case-section">
+  <div class="case-section__head"><span class="mono" data-reveal>Build</span><h2 class="display-s" data-split>A pure, seeded rules engine — and everything on top of it.</h2></div>
+  <div class="case-section__body prose" data-reveal>
+    <p>The game runs on a deterministic, seeded rules engine: every run is replayable from its seed, every rule is testable in isolation, and the same engine powers the browser client, the simulation harness and the print export. On top of it sits a 66-card content set with painted art, a complete free-to-play client with a between-runs metagame — quests, an armoury, a battle pass, accounts and cloud saves, a store — and a print-ready pipeline for the boxed edition.</p>
+    <p>I directed the art, wrote the chapters, tuned the economy, built the client, and shipped the marketing site.</p>
+  </div>
+</section>
+
+<div class="case-gallery">
+  <figure class="g-6" data-reveal><img src="/assets/work/shipless/hub.webp" srcset="/assets/work/shipless/hub-800.webp 800w, /assets/work/shipless/hub.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw" alt="The bar between runs: a weathered bartender under shelves of glowing bottles, with Resume Run and New Run controls." width="1600" height="1000" loading="lazy" decoding="async"><figcaption>The bar between runs</figcaption></figure>
+  <figure class="g-6" data-reveal><img src="/assets/work/shipless/run.webp" srcset="/assets/work/shipless/run-800.webp 800w, /assets/work/shipless/run.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw" alt="A chapter card mid-run: the Marine faces The Changed, with dice and an Execute button." width="1600" height="1000" loading="lazy" decoding="async"><figcaption>A fight, mid-roll</figcaption></figure>
+  <figure class="g-4" data-reveal><img src="/assets/work/shipless/die.webp" alt="A single black die with glowing amber pips on a metal deck." width="1000" height="1000" loading="lazy" decoding="async"><figcaption>The die</figcaption></figure>
+  <figure class="g-4" data-reveal><img src="/assets/work/shipless/corridor.webp" alt="A dark ship corridor lit by a single lamp." width="1000" height="1000" loading="lazy" decoding="async"><figcaption>Chapter art</figcaption></figure>
+  <figure class="g-4" data-reveal><img src="/assets/work/shipless/boss.webp" alt="A vast biomechanical mass glowing red in the hull." width="1000" height="1000" loading="lazy" decoding="async"><figcaption>What waits at the end</figcaption></figure>
+</div>
+
+<section class="case-section">
+  <div class="case-section__head"><span class="mono" data-reveal>Process</span><h2 class="display-s" data-split>I had AI agents play it 1,800 times.</h2></div>
+  <div class="case-section__body prose" data-reveal>
+    <p>Because the engine is pure and seeded, I could point AI agents at it and have them play thousands of full games across every class. The harness found real balance bugs a human sweep would have missed: a co-op difficulty that quietly collapsed <b>11×</b> at four players, and a single content dial worth <b>45 points</b> of win rate. Then it proved the fixes — the same rigour I brought to balancing at Anomaly Games, aimed at my own game.</p>
+    <p>The result is a small game that is fair at every player count, and a process I would run again on anything I direct.</p>
+    <div class="cta-row">
+      <a class="arrow-link underline small" href="{{ site.shipless }}" target="_blank" rel="noopener">Play SHIPLESS free at shipless.ca {{ arrow | safe }}</a>
+    </div>
+  </div>
+</section>
+
+<ul class="case-numbers" data-stagger>
+  <li class="number"><span class="number__value">1,800</span><span class="number__label">AI playthroughs</span></li>
+  <li class="number"><span class="number__value">66</span><span class="number__label">Cards in the set</span></li>
+  <li class="number"><span class="number__value">11×</span><span class="number__label">Difficulty collapse found — and fixed</span></li>
+  <li class="number"><span class="number__value">45 pts</span><span class="number__label">Win-rate swing from a single dial</span></li>
+</ul>
+
+<figure class="case-quote">
+  <blockquote data-split>Being the <em>whole team</em> is a useful way to remember what each discipline actually costs.</blockquote>
+  <figcaption class="mono" data-reveal>Matthew Shera — on building SHIPLESS solo</figcaption>
+</figure>

@@ -1,0 +1,127 @@
+---
+layout: base.njk
+permalink: /resume/
+title: Résumé
+description: Résumé of Matthew Shera — game director and systems designer in Toronto. Shipless Inc., Anomaly Games, Horizon Blockchain Games (Skyweaver), CCP Games, Second Dinner.
+bodyClass: resume-page
+---
+{% set arrow %}<svg class="arrow-link__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endset %}
+
+<article class="resume wrap" data-hero-root>
+  <header class="resume__head">
+    <div class="case-hero__eyebrow mono" data-reveal data-hero>
+      <span>Résumé</span>
+      <span>Toronto, Canada</span>
+    </div>
+    <div class="resume__title-row">
+      <div>
+        <h1 class="display-l" data-split data-hero>Matthew Shera</h1>
+        <p class="resume__role" data-reveal data-hero>Game Director &amp; Systems Designer</p>
+      </div>
+      <ul class="resume__contact" data-reveal data-hero>
+        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        <li><a href="{{ site.linkedin }}" target="_blank" rel="noopener">linkedin.com/in/matthew-shera</a></li>
+        <li><a href="/">matthewshera.com</a></li>
+        <li class="resume__download"><a class="arrow-link underline" href="/assets/Matthew-Shera-Resume.pdf" download>Download PDF {{ arrow | safe }}</a></li>
+      </ul>
+    </div>
+    <p class="resume__summary lede" data-reveal data-hero>Game director and systems designer with six years leading design on card and dice games, and fifteen competing in them. I lead multidisciplinary teams with AI-assisted workflows, design free-to-play and hybrid economies that reward play, and hold the first fifteen minutes of a game to the highest standard. I lead with experience, respect, empathy — and above all, kindness.</p>
+  </header>
+
+  <section class="resume__section">
+    <h2 class="mono">Experience</h2>
+    <ol class="resume__list">
+      <li class="resume__item">
+        <div class="resume__when">2026–present</div>
+        <div class="resume__what">
+          <h3>Founder &amp; Director <span>Shipless Inc. · Toronto</span></h3>
+          <p>Designed, built, art-directed and balanced <a href="/work/shipless/" data-transition>SHIPLESS</a>, a co-op sci-fi survival dice crawler, end to end as sole developer: a seeded deterministic rules engine, a 66-card content set, a free browser client with a between-runs metagame, a print-ready pipeline, and a marketing site. Ran an AI playtest harness of 1,800+ full playthroughs that found and fixed real balance bugs before launch.</p>
+          <p class="resume__tags">Direction · Systems &amp; economy · Engineering · Art direction · Go-to-market</p>
+        </div>
+      </li>
+      <li class="resume__item">
+        <div class="resume__when">2024–2026</div>
+        <div class="resume__what">
+          <h3>Game Director <span>Anomaly Games</span></h3>
+          <p>Led studio-wide vision for AI-driven game experiences across multiple live titles. Progressed from Associate Game Director to Game Director, managing cross-functional teams across design, engineering and art. Built MCTS- and CFR-based simulation workflows for economy balancing and player-behaviour modelling. Designed onboarding systems targeting the first 15 minutes of play to maximise retention. Drove creative direction, hiring, go-to-market strategy and live ops.</p>
+          <p class="resume__tags">Games — <a href="/work/pocket-knights/" data-transition>Pocket Knights</a> (mobile CCG), <a href="/work/dont-die/" data-transition>Don’t Die</a> (roguelike auto-battler), Goonville (cozy sim), Gmeow (idle stacker), Moo.F.O. (clicker)</p>
+        </div>
+      </li>
+      <li class="resume__item">
+        <div class="resume__when">2024</div>
+        <div class="resume__what">
+          <h3>Systems &amp; Economy Designer <span>Clevrer</span></h3>
+          <p>Designed the next generation of arena-based MMO battlers using AI-assisted balancing and content generation. Shaped hybrid free-to-play and Web3 economies with game designers and an economist — core onboarding, progression, monetization and retention.</p>
+          <p class="resume__tags">AI-assisted design · Economy design · Production · Prototyping · Unreal</p>
+        </div>
+      </li>
+      <li class="resume__item">
+        <div class="resume__when">2024</div>
+        <div class="resume__what">
+          <h3>Systems Designer <span>P1 Games</span></h3>
+          <p>Collaborated with designers displaced by the 2023–2024 industry layoffs to build Final Melody, an anime RPG inspired by Pokémon, Guitar Hero and music.</p>
+          <p class="resume__tags">Mentorship · Production · Direction · Prototyping · Miro · Unity</p>
+        </div>
+      </li>
+      <li class="resume__item">
+        <div class="resume__when">2020–2024</div>
+        <div class="resume__what">
+          <h3>Lead Game Designer <span>Horizon Blockchain Games</span></h3>
+          <p>Led <a href="/work/skyweaver/" data-transition>Skyweaver</a>’s game vision while managing a team of seven junior game designers. Co-led the Clash of Inventors and Hexbound Invasion expansions; drove the Hero Ability update, Quests 2.0, Ranked 2.0 and Economy 2.0. Drove AI adoption across the design team and collaborated cross-functionally with engineers and artists. Improved retention 240% and player satisfaction 47%; grew ARPU from $0.23 to $2.41. Skyweaver was a 2023 GAM3 Awards nominee for Best Mobile, Card and Strategy Game.</p>
+          <p class="resume__tags">Team management · Economy design · UI/UX · Expansion design · Narrative · Machinations · Figma</p>
+        </div>
+      </li>
+      <li class="resume__item">
+        <div class="resume__when">2018–present</div>
+        <div class="resume__what">
+          <h3>Freelance Game Designer <span>Self-employed</span></h3>
+          <p>Consulting on game, systems and economy design for commercial titles across mobile, PC and licensed IP — free-to-play monetization, onboarding, core loops and AI-assisted design pipelines.</p>
+          <p class="resume__tags">Projects — EVE Frontier (CCP Games), Marvel Snap (Second Dinner), Palphabet, Netflix (NDA)</p>
+        </div>
+      </li>
+      <li class="resume__item">
+        <div class="resume__when">2010–present</div>
+        <div class="resume__what">
+          <h3>Competitive TCG Player &amp; Coach <span>Magic: The Gathering, Yu-Gi-Oh!, Chaotic, Lorcana</span></h3>
+          <p>Long-time competitor — most recently Top 64 at DLC Toronto — and coach for aspiring players, focused on critical analysis, deck building and a stoic competitive mindset.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <div class="resume__grid">
+    <section class="resume__section">
+      <h2 class="mono">Education</h2>
+      <ul class="resume__facts">
+        <li><b>BEng Mechatronics Engineering, Honours</b><span>Ontario Tech University · 2015–2018</span></li>
+        <li><b>Red Seal Engineering Leadership Gifted Certificate, Honours</b><span>Western Technical-Commercial School · 2011–2015</span></li>
+      </ul>
+    </section>
+    <section class="resume__section">
+      <h2 class="mono">Certifications</h2>
+      <ul class="resume__facts">
+        <li><b>Professional Scrum Master</b><span>Scrum.org · 2024</span></li>
+        <li><b>Game Writing Certification</b><span>ELVTR · 2024</span></li>
+        <li><b>UX Design Specialization</b><span>Google · 2023–2024</span></li>
+      </ul>
+    </section>
+    <section class="resume__section">
+      <h2 class="mono">Awards &amp; speaking</h2>
+      <ul class="resume__facts">
+        <li><b>GAM3 Awards 2023 — nominee</b><span>Best Mobile, Card &amp; Strategy Game, for Skyweaver</span></li>
+        <li><b>Panelist — NextGen Play: AI &amp; Web3 Gaming Summit</b><span>“The Future of Game Ownership”</span></li>
+        <li><b>McCall Mechanical Engineering Scholarship</b><span>Western Technical-Commercial School · 2015</span></li>
+        <li><b>3× Gracious Professionalism Award</b><span>FIRST Robotics · 2012, 2014, 2015</span></li>
+      </ul>
+    </section>
+    <section class="resume__section">
+      <h2 class="mono">Tools &amp; projects</h2>
+      <ul class="resume__facts">
+        <li><b>AI</b><span>Claude, ChatGPT, Gemini, Midjourney</span></li>
+        <li><b>Design</b><span>Machinations, Figma, Miro, Notion, Jira, Adobe Creative Suite</span></li>
+        <li><b>Engines</b><span>Godot, Unity, Unreal</span></li>
+        <li><b>Betallion — CCG board game</b><span>Personal project, ongoing: six ancient civilizations, drafted Cores, Attackers, Blockers and Energy units</span></li>
+      </ul>
+    </section>
+  </div>
+</article>

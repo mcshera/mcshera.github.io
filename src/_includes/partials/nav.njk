@@ -1,0 +1,35 @@
+<header class="nav" data-nav>
+  <a class="nav__brand" href="/" data-transition>
+    <span class="nav__name">Matthew Shera</span>
+    <span class="nav__role">Game Director</span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="/#work" data-transition data-nav-link>Work</a>
+    <a href="/#about" data-transition data-nav-link>About</a>
+    <a href="/#contact" data-transition data-nav-link>Contact</a>
+  </nav>
+  <div class="nav__meta">
+    <span class="nav__place">Toronto</span>
+    <span class="nav__sep" aria-hidden="true">·</span>
+    <time class="nav__clock" data-clock datetime="">--:--</time>
+  </div>
+  <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+    <span class="nav__toggle-text" data-menu-text>Menu</span>
+  </button>
+</header>
+
+<div class="menu" id="menu" data-menu inert>
+  <nav class="menu__links" aria-label="Menu">
+    <a href="/#work" data-transition data-menu-link><span class="menu__num">01</span>Work</a>
+    <a href="/#about" data-transition data-menu-link><span class="menu__num">02</span>About</a>
+    <a href="/#contact" data-transition data-menu-link><span class="menu__num">03</span>Contact</a>
+  </nav>
+  <div class="menu__body">
+    <p class="menu__tag">{{ site.availability }} — director and lead roles, studio consulting on systems and economies.</p>
+    <a class="menu__mail" href="mailto:{{ site.email }}">{{ site.email }}</a>
+  </div>
+  <div class="menu__foot">
+    <span>Toronto · <time data-clock datetime="">--:--</time></span>
+    <a href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>

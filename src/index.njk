@@ -1,0 +1,232 @@
+---
+layout: base.njk
+permalink: /
+bodyClass: home
+---
+{% set arrow %}<svg class="arrow-link__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endset %}
+{% set arrowDown %}<svg class="arrow-link__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2V14M8 14L3 9M8 14L13 9" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endset %}
+
+<section class="hero wrap" id="top" data-hero-root>
+  <div class="hero__eyebrow mono" data-reveal data-hero>
+    <span>Selected work, 2020–2026</span>
+    <span>Toronto, Canada</span>
+  </div>
+
+  <h1 class="hero__title display-xl" data-split data-hero>Games that <em>earn</em> the years you give them.</h1>
+
+  <div class="hero__row">
+    <p class="hero__intro lede measure" data-reveal data-hero>
+      Matthew Shera is a game director and systems designer. Six years leading design on card and dice games — <a class="underline" href="/work/skyweaver/" data-transition>Skyweaver</a>, <a class="underline" href="/work/pocket-knights/" data-transition>Pocket Knights</a>, <a class="underline" href="/work/dont-die/" data-transition>Don’t&nbsp;Die</a> — and the founder of Shipless Inc.
+    </p>
+    <div class="hero__aside" data-reveal data-hero>
+      <span class="status"><span class="status__dot" aria-hidden="true"></span>{{ site.availability }}</span>
+      <span class="hero__now">Currently — {{ site.status }}</span>
+      <a class="arrow-link arrow-link--down small" href="#work" data-transition>Selected work {{ arrowDown | safe }}</a>
+    </div>
+  </div>
+
+  <div class="plate-wrap" data-fade>
+    <a class="plate" href="/work/shipless/" data-transition data-cursor="view">
+      <img class="plate__media" src="/assets/work/shipless/ship-wide.webp" srcset="/assets/work/shipless/ship-wide-800.webp 800w, /assets/work/shipless/ship-wide-1280.webp 1280w, /assets/work/shipless/ship-wide.webp 1920w" sizes="100vw" width="1920" height="1080" alt="The Erebus, a mining hauler adrift against a star field — key art from SHIPLESS." fetchpriority="high" decoding="async">
+      <div class="plate__caption">
+        <div>
+          <span class="mono">Featured — 2026</span>
+          <div class="plate__title">SHIPLESS</div>
+        </div>
+        <span class="plate__link">Founder, director &amp; sole developer {{ arrow | safe }}</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      {% set credits = ["Skyweaver", "Pocket Knights", "Don’t Die", "SHIPLESS", "Goonville", "Gmeow", "Moo.F.O."] %}
+      {% for c in credits %}<span class="marquee__item"><i></i>{{ c }}</span>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<div data-theme-zone="ink">
+<section class="work section wrap" id="work">
+  <div class="section-head" data-reveal>
+    <span class="mono">Selected work</span>
+    <span class="mono">{{ collections.work | length | pad }} case studies · 2020–2026</span>
+  </div>
+
+  <ul class="work-list">
+    {% for w in collections.work %}
+    <li>
+      <a class="work-row" href="{{ w.url }}" data-transition data-slug="{{ w.data.slug }}">
+        <span class="work-row__idx">{{ loop.index | pad }}</span>
+        <span class="work-row__title">{{ w.data.title }}</span>
+        <span class="work-row__meta">
+          <span class="work-row__desc">{{ w.data.summary }}</span>
+          <span class="work-row__tags"><span class="nowrap">{{ w.data.role }}</span><span class="tag-extra"> · <span class="nowrap">{{ w.data.studio }}</span> · <span class="nowrap">{{ w.data.years }}</span></span></span>
+        </span>
+        <svg class="work-row__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div class="work-more" data-reveal>
+    <div class="work-more__head">
+      <span class="mono">Also</span>
+      <p class="muted small" style="margin-top:14px; max-width: 30ch;">Titles directed, systems shaped, and studios advised along the way.</p>
+    </div>
+    <ul class="work-more__list">
+      <li><span>Goonville — cozy sim</span><span>Director · Anomaly Games</span></li>
+      <li><span>Gmeow — idle stacker</span><span>Director · Anomaly Games</span></li>
+      <li><span>Moo.F.O. — clicker</span><span>Director · Anomaly Games</span></li>
+      <li><span>Arena MMO battler</span><span>Systems &amp; economy · Clevrer</span></li>
+      <li><span>Final Melody — anime RPG</span><span>Systems · P1 Games</span></li>
+      <li><span>EVE Frontier</span><span>Consulting · CCP Games</span></li>
+      <li><span>Marvel Snap</span><span>Consulting · Second Dinner</span></li>
+      <li><span>Unannounced title (NDA)</span><span>Consulting · Netflix</span></li>
+      <li><span>Palphabet</span><span>Consulting · Independent</span></li>
+      <li><span>Betallion — CCG board game</span><span>Personal · Ongoing</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section--tight wrap" id="numbers" aria-labelledby="numbers-title">
+  <div class="section-head" data-reveal>
+    <span class="mono" id="numbers-title">In numbers</span>
+    <span class="mono">Selected results · 2020–2026</span>
+  </div>
+  <ul class="numbers" data-stagger>
+    <li class="number">
+      <span class="number__value">+240%</span>
+      <span class="number__label">Retention lift<small>Skyweaver, across Economy 2.0, Quests 2.0 and Ranked 2.0</small></span>
+    </li>
+    <li class="number">
+      <span class="number__value">$2.41</span>
+      <span class="number__label">ARPU, from $0.23<small>Average revenue per user, Skyweaver</small></span>
+    </li>
+    <li class="number">
+      <span class="number__value">+47%</span>
+      <span class="number__label">Player satisfaction<small>Skyweaver</small></span>
+    </li>
+    <li class="number">
+      <span class="number__value">1,800</span>
+      <span class="number__label">AI playtests<small>Full playthroughs of SHIPLESS by AI agents before launch</small></span>
+    </li>
+    <li class="number">
+      <span class="number__value">7</span>
+      <span class="number__label">Junior designers led<small>Four years, Horizon Blockchain Games</small></span>
+    </li>
+    <li class="number">
+      <span class="number__value">15+</span>
+      <span class="number__label">Years competing<small>Magic, Yu-Gi-Oh!, Chaotic, Lorcana — Top 64, DLC Toronto</small></span>
+    </li>
+  </ul>
+</section>
+</div>
+
+<section class="section wrap" id="approach" aria-labelledby="approach-title">
+  <div class="principles">
+    <div class="principles__intro">
+      <span class="mono" id="approach-title" data-reveal>How I direct</span>
+      <h2 class="display-m" style="margin-top:18px" data-split>Deep systems, fair economies, and teams that ship.</h2>
+      <p class="muted" style="margin-top:24px; max-width: 30em;" data-reveal>Four things I believe after six years of leading live games — and fifteen of competing in them.</p>
+    </div>
+    <ol class="principles__list">
+      <li class="principle" data-reveal>
+        <span class="principle__num">01</span>
+        <div>
+          <h3 class="principle__title">The first fifteen minutes decide the next fifteen months.</h3>
+          <p class="principle__body">Onboarding is not a tutorial. It is the promise the rest of the game has to keep. At Anomaly I designed onboarding systems around the first quarter-hour of play, because every retention curve I have ever shipped was already written there.</p>
+        </div>
+      </li>
+      <li class="principle" data-reveal>
+        <span class="principle__num">02</span>
+        <div>
+          <h3 class="principle__title">Simulate before you ship.</h3>
+          <p class="principle__body">I built MCTS- and CFR-inspired frameworks to pressure-test balance and player behaviour before a change reached a real player, and had AI agents play SHIPLESS 1,800 times before launch. <q>I would rather find a broken card on my laptop at midnight than in a player review the next morning.</q></p>
+        </div>
+      </li>
+      <li class="principle" data-reveal>
+        <span class="principle__num">03</span>
+        <div>
+          <h3 class="principle__title">Ownership has to feel earned.</h3>
+          <p class="principle__body">An economy is a promise about effort. Whether it is a ranked ladder, a battle pass, or a card someone truly owns, power should be earned in play, not just bought. <q>Players don’t want to be shareholders. They want to be heroes.</q></p>
+        </div>
+      </li>
+      <li class="principle" data-reveal>
+        <span class="principle__num">04</span>
+        <div>
+          <h3 class="principle__title">Hand people the keys.</h3>
+          <p class="principle__body">The numbers I am proudest of are quieter than a retention chart: seven junior designers who became better designers. Direction means giving away work I could have kept, and giving feedback that makes someone sharper instead of smaller.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section wrap" id="about" aria-labelledby="about-title">
+  <div class="section-head" data-reveal>
+    <span class="mono" id="about-title">About</span>
+    <span class="mono">Toronto, Canada</span>
+  </div>
+  <div class="about">
+    <div class="about__story">
+      <h2 class="display-m" data-split>I was four when my sister handed me my first pack of Magic cards. <em>I have been building doors ever since.</em></h2>
+      <div class="prose" style="margin-top: 40px; max-width: 36em;" data-reveal>
+        <p>I couldn’t read most of the words yet, but I knew there was a world inside the wrapper — and that the people who made it had left me a door. Everything since traces back to that: competing in card games for fifteen years, coaching players, shipping Skyweaver, running teams at Horizon and Anomaly, and now founding a studio to build a game of my own, end to end.</p>
+        <p>I am an engineer by training, a systems designer by temperament, and a competitor by habit. I have led design on a shipped CCG, directed a portfolio of live mobile titles, and consulted for CCP Games, Second Dinner and Netflix. I work with AI agents daily — simulation, prototyping, balance — and I believe the best games are fair, deep, and kind to newcomers. The best teams are, too.</p>
+        <p>When I am not designing games I am usually playing them, for keeps, at a card table somewhere in Toronto.</p>
+      </div>
+      <div class="cta-row" data-reveal>
+        <a class="arrow-link underline small" href="/resume/" data-transition>Résumé {{ arrow | safe }}</a>
+        <a class="arrow-link underline small" href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn {{ arrow | safe }}</a>
+      </div>
+    </div>
+
+    <div class="about__side" data-reveal>
+      <ul class="timeline">
+        <li><span class="when">2026–</span><span class="what"><b>Founder &amp; director, Shipless Inc.</b><span>SHIPLESS — designed, built and balanced solo</span></span></li>
+        <li><span class="when">2024–2026</span><span class="what"><b>Game Director, Anomaly Games</b><span>From Associate Game Director · Pocket Knights, Don’t Die, Goonville, Gmeow, Moo.F.O.</span></span></li>
+        <li><span class="when">2024</span><span class="what"><b>Systems &amp; Economy Designer, Clevrer</b><span>Arena MMO battler · hybrid F2P economies</span></span></li>
+        <li><span class="when">2024</span><span class="what"><b>Systems Designer, P1 Games</b><span>Final Melody — an anime RPG built with designers displaced by the 2023–24 layoffs</span></span></li>
+        <li><span class="when">2020–2024</span><span class="what"><b>Lead Game Designer, Horizon Blockchain Games</b><span>Skyweaver · led a team of seven</span></span></li>
+        <li><span class="when">2018–</span><span class="what"><b>Freelance game designer</b><span>CCP Games, Second Dinner, Netflix, Palphabet</span></span></li>
+        <li><span class="when">2015–2018</span><span class="what"><b>BEng Mechatronics Engineering (Hons)</b><span>Ontario Tech University</span></span></li>
+        <li><span class="when">2010–</span><span class="what"><b>Competitive TCG player &amp; coach</b><span>Magic, Yu-Gi-Oh!, Chaotic, Lorcana</span></span></li>
+      </ul>
+      <div class="facts">
+        <div>
+          <h3>Recognition</h3>
+          <ul>
+            <li><b>2023 GAM3 Awards</b> — Skyweaver nominee, Best Mobile, Card &amp; Strategy Game</li>
+            <li><b>Speaker</b> — NextGen Play: AI &amp; Web3 Gaming Summit, “The Future of Game Ownership”</li>
+            <li><b>3× Gracious Professionalism Award</b> — FIRST Robotics</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Credentials</h3>
+          <ul>
+            <li><b>Professional Scrum Master</b> — Scrum.org</li>
+            <li><b>Game Writing</b> — ELVTR</li>
+            <li><b>UX Design Specialization</b> — Google</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tools</h3>
+          <ul>
+            <li>Claude, ChatGPT, Gemini, Midjourney</li>
+            <li>Machinations, Figma, Miro, Notion, Jira</li>
+            <li>Godot, Unity, Unreal</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Disciplines</h3>
+          <ul>
+            <li>Creative direction &amp; game vision</li>
+            <li>Systems, economy &amp; progression design</li>
+            <li>Live ops, onboarding &amp; monetization</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
