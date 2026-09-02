@@ -15,25 +15,28 @@ bodyClass: home
   <h1 class="hero__title display-xl" data-split data-hero>Games that <em>earn</em> the years you give them.</h1>
 
   <div class="hero__row">
-    <p class="hero__intro lede measure" data-reveal data-hero>
+    <p class="hero__intro lede measure hero-css">
       Matthew Shera is a game director and systems designer. Now Lead Game Designer at Amber Studio, he spent six years leading design on card and dice games, including <a class="underline" href="/work/skyweaver/" data-transition>Skyweaver</a>, <a class="underline" href="/work/pocket-knights/" data-transition>Pocket Knights</a> and <a class="underline" href="/work/dont-die/" data-transition>Don’t&nbsp;Die</a>, and is the founder of Shipless Inc.
     </p>
-    <div class="hero__aside" data-reveal data-hero>
+    <div class="hero__aside hero-css">
       <span class="status"><span class="status__dot" aria-hidden="true"></span>{{ site.availability }}</span>
       <span class="hero__now">Currently — {{ site.status }}</span>
       <a class="arrow-link arrow-link--down small" href="#work" data-transition>Selected work {{ arrowDown | safe }}</a>
     </div>
   </div>
 
-  <div class="plate-wrap" data-fade>
+  <div class="plate-wrap hero-css">
     <a class="plate" href="/work/shipless/" data-transition data-cursor="view">
-      <img class="plate__media" src="/assets/work/shipless/ship-wide.webp" srcset="/assets/work/shipless/ship-wide-800.webp 800w, /assets/work/shipless/ship-wide-1280.webp 1280w, /assets/work/shipless/ship-wide.webp 1920w" sizes="100vw" width="1920" height="1080" alt="The Erebus, a mining hauler adrift against a star field. Key art from SHIPLESS." fetchpriority="high" decoding="async">
-      <div class="plate__caption">
-        <div>
-          <span class="mono">Featured — 2026</span>
-          <div class="plate__title">SHIPLESS</div>
+      <div class="plate__inner">
+        {% set eager = true %}{% set variant = 'home' %}{% set alt = 'The Erebus, a mining hauler adrift against a star field. Key art from SHIPLESS.' %}
+        {% include "partials/erebus.njk" %}
+        <div class="plate__caption">
+          <div>
+            <span class="mono">Featured — 2026</span>
+            <div class="plate__title">SHIPLESS</div>
+          </div>
+          <span class="plate__link">Founder, director &amp; sole developer {{ arrow | safe }}</span>
         </div>
-        <span class="plate__link">Founder, director &amp; sole developer {{ arrow | safe }}</span>
       </div>
     </a>
   </div>

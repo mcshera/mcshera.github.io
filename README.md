@@ -56,9 +56,14 @@ The About section is designed to work without a photo. To add one, place `src/as
 - Email is `matthewshera@gmail.com`; a domain address (e.g. `hello@matthewshera.com` via Cloudflare Email Routing) reads better — change `site.json → email` only.
 - The hero marquee lists only titles you directed or led. Remove the `.marquee` block in `src/index.njk` if you prefer a stiller page.
 
+## The living SHIPLESS plate
+The hero plate is built like the game's own title screen: a drifting star field (`space.webp`), two twinkling star layers, and the Erebus cutout (`erebus.webp`) as its own slowly rotating layer, with a cursor parallax on desktop. Everything is CSS transforms/opacity (compositor-only); `prefers-reduced-motion` freezes it. Tune position/size with the `--ship-x / --ship-y / --ship-w` variables on `.erebus` in `main.css`. Partial: `src/_includes/partials/erebus.njk`.
+
 ## Accessibility & performance
-- `prefers-reduced-motion` disables the veil, smooth scroll, parallax and reveals (content is shown immediately).
-- Lighthouse (local build): desktop 100 / 100 / 100 / 100 · mobile 94 / 100 / 100 / 100. Remaining mobile points are the deliberate ~1s intro.
+- No curtain on first load: content paints immediately; the ink veil is used only between pages. If scripts are slow or blocked, a CSS safety net reveals all content after 2.6s.
+- All motion is compositor-only (transforms/opacity, CSS variables). The plate reveal scales the frame on X while the inner counter-scales, so there are no clip-path repaints.
+- `prefers-reduced-motion` disables smooth scroll, parallax, the rotating plate and reveals (content is shown immediately).
+- Lighthouse (local build served with compression, as Cloudflare does): desktop 100 / 100 / 100 / 100 · mobile 96 / 100 / 100 / 100.
 - No third-party requests at runtime — fonts, GSAP and Lenis are served from `/assets`.
 
 ## Structure

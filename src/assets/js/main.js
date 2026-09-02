@@ -15,7 +15,7 @@ if (hasGsap) {
 let lenis = null;
 function initLenis() {
   if (reduced || !hasGsap || typeof Lenis === 'undefined') return;
-  lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 0.95, smoothWheel: true, syncTouch: false });
+  lenis = new Lenis({ lerp: 0.16, wheelMultiplier: 1, smoothWheel: true, syncTouch: false });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -43,17 +43,22 @@ function initClock() {
   setInterval(tick, 15000);
 }
 
-/* ---------------- Veil: intro + page transitions ---------------- */
+/* ---------------- Veil: page transitions (first load has no curtain) ---------------- */
 const veil = document.querySelector('.veil');
-let firstVisit = true;
-try { firstVisit = !sessionStorage.getItem('ms-visited'); sessionStorage.setItem('ms-visited', '1'); } catch (_) { /* private mode */ }
+const arrivedViaVeil = html.classList.contains('veil-cover');
+try { sessionStorage.removeItem('ms-veil'); } catch (_) { /* noop */ }
+
 function veilOut() {
-  if (!veil || !hasGsap) return Promise.resolve();
-  if (reduced) { veil.style.display = 'none'; return Promise.resolve(); }
-  return gsap.to(veil, { yPercent: -101, duration: firstVisit ? 0.85 : 0.6, ease: 'power3.inOut', delay: firstVisit ? 0.05 : 0 }).then();
+  if (!veil || !hasGsap || !arrivedViaVeil) return Promise.resolve();
+  if (reduced) { html.classList.remove('veil-cover'); return Promise.resolve(); }
+  veil.style.animation = 'none';
+  return gsap.to(veil, { yPercent: -101, duration: 0.55, ease: 'power3.inOut', onComplete: () => { veil.style.visibility = 'hidden'; html.classList.remove('veil-cover'); } }).then();
 }
 function veilIn() {
   if (!veil || !hasGsap || reduced) return Promise.resolve();
+  try { sessionStorage.setItem('ms-veil', '1'); } catch (_) { /* noop */ }
+  veil.style.animation = 'none';
+  veil.style.visibility = 'visible';
   gsap.set(veil, { yPercent: 101 });
   return gsap.to(veil, { yPercent: 0, duration: 0.45, ease: 'power3.inOut' }).then();
 }
@@ -84,7 +89,7 @@ function initTransitions() {
   }));
 
   // Back/forward cache: make sure the veil is not stuck
-  window.addEventListener('pageshow', (e) => { if (e.persisted && veil) gsap.set(veil, { yPercent: -101 }); });
+  window.addEventListener('pageshow', (e) => { if (e.persisted && veil) { gsap.set(veil, { yPercent: -101 }); veil.style.visibility = 'hidden'; html.classList.remove('veil-cover'); try { sessionStorage.removeItem('ms-veil'); } catch (_) {} } });
 }
 
 /* ---------------- Menu (mobile) ---------------- */
@@ -148,7 +153,7 @@ function splitHeading(el, { trigger = true, delay = 0 } = {}) {
     onSplit(self) {
       wrapLines(self.lines);
       el.classList.add('is-split');
-      const vars = { yPercent: 130, duration: trigger ? 1.5 : (firstVisit ? 1.5 : 1.1), stagger: 0.085, ease: 'power4.out', delay };
+      const vars = { yPercent: 130, duration: trigger ? 1.5 : 1.3, stagger: 0.085, ease: 'power4.out', delay };
       if (trigger) vars.scrollTrigger = { trigger: el, start: 'top 88%', once: true };
       return gsap.from(self.lines, vars);
     },
@@ -197,27 +202,41 @@ function initHero() {
   if (nav) gsap.set(nav, { opacity: 0 });
 
   veilOut();
-  const base = firstVisit ? 0.25 : 0.1; // start while the veil is lifting
+  const base = arrivedViaVeil ? 0.2 : 0.05; // start immediately (or as the curtain lifts)
   heroHeadings.forEach((el) => splitHeading(el, { trigger: false, delay: base + 0.2 }));
   gsap.delayedCall(base + 0.05, () => { if (nav) gsap.to(nav, { opacity: 1, duration: 1.2 }); });
-  heroReveals.forEach((el, i) => gsap.delayedCall(base + 0.4 + i * 0.08, () => el.classList.add('is-in')));
+  heroReveals.forEach((el, i) => gsap.delayedCall(base + 0.35 + i * 0.08, () => el.classList.add('is-in')));
   if (hero) hero.classList.add('is-ready');
 }
 
-/* ---------------- Featured plate scrub ---------------- */
+/* ---------------- Featured plate scrub + living Erebus ---------------- */
 function initPlates() {
   if (!hasGsap || reduced) return;
   document.querySelectorAll('.plate').forEach((plate) => {
-    const isNarrow = window.matchMedia('(max-width: 700px)').matches;
-    gsap.fromTo(plate,
-      { clipPath: isNarrow ? 'inset(0 8% round 2px)' : 'inset(0 22% round 2px)' },
-      { clipPath: 'inset(0 0% round 0px)', ease: 'none',
-        scrollTrigger: { trigger: plate, start: 'top 90%', end: 'top 20%', scrub: 0.6 } });
-    const media = plate.querySelector('.plate__media');
-    if (media) gsap.fromTo(media, { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: plate, start: 'top bottom', end: 'bottom top', scrub: true } });
+    // One CSS variable drives frame (scaleX p) and inner (scaleX 1/p): compositor-only, no repaint.
+    gsap.to(plate, { '--p': 1, ease: 'none', scrollTrigger: { trigger: plate, start: 'top 90%', end: 'top 20%', scrub: 0.5 } });
+    const scene = plate.querySelector('.erebus');
+    if (scene) gsap.fromTo(scene, { yPercent: -4 }, { yPercent: 4, ease: 'none', scrollTrigger: { trigger: plate, start: 'top bottom', end: 'bottom top', scrub: true } });
   });
-  document.querySelectorAll('.case-plate img, .about__portrait img').forEach((img) => {
-    gsap.fromTo(img, { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+  document.querySelectorAll('.case-plate img, .about__portrait img, .case-plate--scene .erebus').forEach((el) => {
+    gsap.fromTo(el, { yPercent: -4 }, { yPercent: 4, ease: 'none', scrollTrigger: { trigger: el.closest('figure') || el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+  // Cursor parallax on the ship (desktop only): the station leans away from the pointer.
+  if (!finePointer) return;
+  document.querySelectorAll('.erebus').forEach((scene) => {
+    const ship = scene.querySelector('[data-parallax-ship]');
+    const space = scene.querySelector('.erebus__space');
+    if (!ship) return;
+    const host = scene.closest('.plate, .case-plate') || scene;
+    const xTo = gsap.quickTo(ship, 'x', { duration: 1.2, ease: 'power2.out' });
+    const yTo = gsap.quickTo(ship, 'y', { duration: 1.2, ease: 'power2.out' });
+    host.addEventListener('mousemove', (e) => {
+      const r = host.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5;
+      const ny = (e.clientY - r.top) / r.height - 0.5;
+      xTo(nx * -28); yTo(ny * -20);
+    }, { passive: true });
+    host.addEventListener('mouseleave', () => { xTo(0); yTo(0); });
   });
 }
 
@@ -275,6 +294,7 @@ function initCursor() {
   document.addEventListener('mouseover', (e) => {
     const t = e.target.closest('[data-cursor]');
     cursor.classList.remove('is-view', 'is-hidden');
+    cursor.classList.toggle('is-on-plate', !!e.target.closest('.plate, .case-plate, .work-preview'));
     if (!t) return;
     const mode = t.getAttribute('data-cursor');
     if (mode === 'hide') cursor.classList.add('is-hidden');

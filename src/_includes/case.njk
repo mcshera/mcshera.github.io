@@ -25,7 +25,12 @@ layout: base.njk
       <div><dt>Disciplines</dt><dd>{{ disciplines }}</dd></div>
     </dl>
 
-    {% if heroImage %}
+    {% if heroScene == 'erebus' %}
+    <figure class="case-plate case-plate--scene" data-fade>
+      {% set eager = true %}{% set variant = 'case' %}{% set alt = heroAlt %}
+      {% include "partials/erebus.njk" %}
+    </figure>
+    {% elif heroImage %}
     <figure class="case-plate" data-fade>
       <img src="{{ heroImage }}"{% if heroSrcset %} srcset="{{ heroSrcset }}" sizes="100vw"{% endif %} alt="{{ heroAlt }}" width="1920" height="1080" fetchpriority="high" decoding="async">
     </figure>

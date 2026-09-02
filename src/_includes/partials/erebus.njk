@@ -1,0 +1,12 @@
+{# Living SHIPLESS plate: drifting star field + the Erebus as its own slowly rotating layer (same construction as the game's title screen). Static composite fallback for reduced motion. #}
+<div class="erebus{% if variant %} erebus--{{ variant }}{% endif %}">
+  <img class="erebus__space" src="/assets/work/shipless/space.webp" srcset="/assets/work/shipless/space-900.webp 900w, /assets/work/shipless/space.webp 1672w" sizes="100vw" width="1672" height="941" alt="" {% if eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+  <div class="erebus__stars erebus__stars--a" aria-hidden="true"></div>
+  <div class="erebus__stars erebus__stars--b" aria-hidden="true"></div>
+  <div class="erebus__anchor">
+    <div class="erebus__par" data-parallax-ship>
+      <img class="erebus__ship" src="/assets/work/shipless/erebus.webp" srcset="/assets/work/shipless/erebus-800.webp 800w, /assets/work/shipless/erebus.webp 1400w" sizes="(max-width: 700px) 110vw, 60vw" width="1400" height="1400" alt="{{ alt or 'The Erebus, a mining hauler bristling with modules, adrift in a star field.' }}" {% if eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+    </div>
+  </div>
+  <div class="erebus__scrim" aria-hidden="true"></div>
+</div>
