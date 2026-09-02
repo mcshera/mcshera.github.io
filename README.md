@@ -13,14 +13,28 @@ npm run og           # regenerate src/og.jpg (the social share image) — needs 
 npm run resume       # regenerate the résumé PDF from /resume/ (print CSS → src/assets/Matthew-Shera-Resume.pdf)
 ```
 
-## Deploy (Cloudflare Pages — the domain is already on Cloudflare)
+## Hosting & deploy (GitHub Pages)
 
-1. Push this folder to a Git repo (GitHub/GitLab).
-2. Cloudflare dashboard → Workers & Pages → Create → Pages → connect the repo.
-3. Build settings: **Framework preset:** None · **Build command:** `npm run build` · **Build output directory:** `_site` · **Node version:** 22 (set `NODE_VERSION=22` in environment variables).
-4. Custom domains → add `matthewshera.com` and `www.matthewshera.com`. Done. `_headers` (security + immutable asset caching) is picked up automatically.
+The site is hosted on **GitHub Pages** from the public repo `mcshera/mcshera.github.io` (branch `main`).
+Every push to `main` runs `.github/workflows/pages.yml` (Node 22 → `npm ci` → `npm run build` → deploy `_site`). Nothing else to do.
 
-Any other static host works too (Netlify: same command/output; GitHub Pages: publish `_site`; Vercel: output `_site`).
+```bash
+git add -A && git commit -m "Update copy" && git push     # ≈ 60–90 s later the change is live
+```
+
+Custom domain: `matthewshera.com` is configured in the repo's Pages settings. **DNS lives at Wix** (the domain's nameservers are Wix-assigned Cloudflare servers), so the records below must be set in the Wix dashboard → Domains → matthewshera.com → Advanced / DNS records:
+
+| Type | Host | Value |
+|---|---|---|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `mcshera.github.io` |
+
+Delete any existing A / CNAME records for `@` and `www` that point to Wix. Once DNS resolves (minutes to a few hours), GitHub issues the HTTPS certificate automatically; then turn on **Enforce HTTPS** in GitHub → repo → Settings → Pages (or run `gh api -X PUT repos/mcshera/mcshera.github.io/pages -F https_enforced=true`).
+
+Check status: `gh api repos/mcshera/mcshera.github.io/pages/health` or the Pages settings panel.
 
 ## Editing content
 
